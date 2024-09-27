@@ -1,0 +1,76 @@
+{
+  "isFull": true,
+  "list": [
+    {
+      "title": "这里填写示例标题",
+      "description": "这里填写示例说明",
+      "code": "./base.js",
+      "scope": [
+        {
+          "name": "_CandidateBill",
+          "packageName": "@components/CandidateBill"
+        }
+      ]
+    },
+    {
+      "title": "生成候选人账单表单",
+      "description": "生成候选人账单表单",
+      "code": "./bill-info-form-inner.js",
+      "scope": [
+        {
+          "name": "remoteLoader",
+          "packageName": "@kne/remote-loader"
+        },
+        {
+          "name": "_CandidateBill",
+          "packageName": "@components/CandidateBill"
+        }
+      ]
+    },
+    {
+      "title": "生成项目账单表单",
+      "description": "生成项目账单表单",
+      "code": "./project-bill-info-form-inner.js",
+      "scope": [
+        {
+          "name": "remoteLoader",
+          "packageName": "@kne/remote-loader"
+        },
+        {
+          "name": "_CandidateBill",
+          "packageName": "@components/CandidateBill"
+        }
+      ]
+    },
+    {
+      "title": "账单中心",
+      "description": "账单中心",
+      "code": "./bill-center.js",
+      "scope": [
+        {
+          "name": "remoteLoader",
+          "packageName": "@kne/remote-loader"
+        },
+        {
+          "name": "_CandidateBill",
+          "packageName": "@components/CandidateBill"
+        }
+      ]
+    },
+    {
+      "title": "账单详情",
+      "description": "账单详情",
+      "code": "./bill-center-detail.js",
+      "scope": [
+        {
+          "name": "remoteLoader",
+          "packageName": "@kne/remote-loader"
+        },
+        {
+          "name": "_CandidateBill",
+          "packageName": "@components/CandidateBill"
+        }
+      ]
+    }
+  ]
+}
