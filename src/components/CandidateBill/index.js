@@ -10,3 +10,5 @@ export { default as BillInfoFormInner } from './BillInfoFormInner';
 export { default as ProjectBillInfoFormInner } from './ProjectBillInfoFormInner';
 export { default as BillCenter } from './BillCenter';
 export { default as BillCenterDetail } from './BillCenterDetail';
+export { default as GenerateBill } from './GenerateBill';
+export { default as GenerateProjectBill } from './GenerateProjectBill';

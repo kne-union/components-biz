@@ -1,13 +1,34 @@
 const { BillInfoFormInner } = _CandidateBill;
 const { createWithRemoteLoader } = remoteLoader;
+const { default: projectListData } = _projectListData;
 const BaseExample = createWithRemoteLoader({
-  modules: ['components-core:FormInfo@Form']
+  modules: ['components-core:FormInfo@Form', 'components-core:Global@PureGlobal']
 })(({ remoteModules }) => {
-  const [Form] = remoteModules;
+  const [Form, PureGlobal] = remoteModules;
   return (
-    <Form>
-      <BillInfoFormInner />
-    </Form>
+    <PureGlobal
+      preset={{
+        apis: {
+          client: {},
+          project: {
+            getList: {
+              loader: () => {
+                return projectListData.data;
+              }
+            },
+            getDetail: {
+              loader: () => {
+                return projectListData.data.projectList[0];
+              }
+            }
+          }
+        }
+      }}
+    >
+      <Form>
+        <BillInfoFormInner />
+      </Form>
+    </PureGlobal>
   );
 });
 

@@ -67,7 +67,15 @@ const ProjectDetailSelectField = createWithRemoteLoader({
     [createListField]
   );
 
-  return <Components {...props} isPopup={false} />;
+  return (
+    <Components
+      {...props}
+      isPopup={false}
+      right={({ value, mapping }) => {
+        return <Flex></Flex>;
+      }}
+    />
+  );
 });
 
 const ProjectDetailSelect = createWithRemoteLoader({

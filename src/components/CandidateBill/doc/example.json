@@ -13,6 +13,29 @@
       ]
     },
     {
+      "title": "生成账单",
+      "description": "生成账单",
+      "code": "./generate-bill.js",
+      "scope": [
+        {
+          "name": "remoteLoader",
+          "packageName": "@kne/remote-loader"
+        },
+        {
+          "name": "antd",
+          "packageName": "antd"
+        },
+        {
+          "name": "_CandidateBill",
+          "packageName": "@components/CandidateBill"
+        },
+        {
+          "name": "_projectListData",
+          "packageName": "@components/ProjectSelect/doc/projectList.json"
+        }
+      ]
+    },
+    {
       "title": "生成候选人账单表单",
       "description": "生成候选人账单表单",
       "code": "./bill-info-form-inner.js",
@@ -24,6 +47,10 @@
         {
           "name": "_CandidateBill",
           "packageName": "@components/CandidateBill"
+        },
+        {
+          "name": "_projectListData",
+          "packageName": "@components/ProjectSelect/doc/projectList.json"
         }
       ]
     },
@@ -39,6 +66,10 @@
         {
           "name": "_CandidateBill",
           "packageName": "@components/CandidateBill"
+        },
+        {
+          "name": "_projectListData",
+          "packageName": "@components/ProjectSelect/doc/projectList.json"
         }
       ]
     },
