@@ -16,9 +16,9 @@
 - _CandidateBill(@components/CandidateBill)
 
 ```jsx
-const {default:CandidateBill} = _CandidateBill;
-const BaseExample = ()=>{
-    return <CandidateBill />;
+const { default: CandidateBill } = _CandidateBill;
+const BaseExample = () => {
+  return <CandidateBill />;
 };
 
 render(<BaseExample />);
@@ -36,9 +36,11 @@ const BaseExample = createWithRemoteLoader({
   modules: ['components-core:FormInfo@Form']
 })(({ remoteModules }) => {
   const [Form] = remoteModules;
-  return <Form>
-    <BillInfoFormInner />
-  </Form>;
+  return (
+    <Form>
+      <BillInfoFormInner />
+    </Form>
+  );
 });
 
 render(<BaseExample />);
@@ -56,9 +58,11 @@ const BaseExample = createWithRemoteLoader({
   modules: ['components-core:FormInfo@Form']
 })(({ remoteModules }) => {
   const [Form] = remoteModules;
-  return <Form>
-    <ProjectBillInfoFormInner />
-  </Form>;
+  return (
+    <Form>
+      <ProjectBillInfoFormInner />
+    </Form>
+  );
 });
 
 render(<BaseExample />);
@@ -76,23 +80,28 @@ const BaseExample = createWithRemoteLoader({
   modules: ['components-core:Global@PureGlobal', 'components-core:Layout']
 })(({ remoteModules }) => {
   const [PureGlobal, Layout] = remoteModules;
-  return <PureGlobal preset={{
-    apis: {
-      candidateBill: {
-        getBillList: {
-          loader: () => {
-            return {
-              pageData: [], totalCount: 0
-            };
+  return (
+    <PureGlobal
+      preset={{
+        apis: {
+          candidateBill: {
+            getBillList: {
+              loader: () => {
+                return {
+                  pageData: [],
+                  totalCount: 0
+                };
+              }
+            }
           }
         }
-      }
-    }
-  }}>
-    <Layout navigation={{ isFixed: false }}>
-      <BillCenter />
-    </Layout>
-  </PureGlobal>;
+      }}
+    >
+      <Layout navigation={{ isFixed: false }}>
+        <BillCenter />
+      </Layout>
+    </PureGlobal>
+  );
 });
 
 render(<BaseExample />);
@@ -110,21 +119,25 @@ const BaseExample = createWithRemoteLoader({
   modules: ['components-core:Global@PureGlobal', 'components-core:Layout']
 })(({ remoteModules }) => {
   const [PureGlobal, Layout] = remoteModules;
-  return <PureGlobal preset={{
-    apis: {
-      candidateBill: {
-        getBillDetail: {
-          loader: () => {
-            return {};
+  return (
+    <PureGlobal
+      preset={{
+        apis: {
+          candidateBill: {
+            getBillDetail: {
+              loader: () => {
+                return {};
+              }
+            }
           }
         }
-      }
-    }
-  }}>
-    <Layout navigation={{ isFixed: false }}>
-      <BillCenterDetail optionFixed={false} />
-    </Layout>
-  </PureGlobal>;
+      }}
+    >
+      <Layout navigation={{ isFixed: false }}>
+        <BillCenterDetail optionFixed={false} />
+      </Layout>
+    </PureGlobal>
+  );
 });
 
 render(<BaseExample />);

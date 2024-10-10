@@ -1,0 +1,11 @@
+.project-item {
+  padding: 12px;
+  cursor: pointer;
+  border: 1px solid transparent;
+
+  &.is-selected {
+    background: var(--primary-color-1);
+    border-radius: 2px;
+    border-color: var(--primary-color);
+  }
+}
