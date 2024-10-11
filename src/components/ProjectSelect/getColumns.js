@@ -23,7 +23,7 @@ const getColumns = () => {
     },
     {
       title: '基准价格（费率）',
-      name: 'rsjzjg',
+      name: 'rsjzjgfl',
       type: 'serialNumberShort'
     },
     {
@@ -54,12 +54,18 @@ const getColumns = () => {
     {
       title: '费率',
       name: 'rsfl',
-      type: 'serialNumberShort'
+      type: 'serialNumberShort',
+      valueOf: (item, { name }) => {
+        return !Number.isNaN(item[name]) ? `${item[name] * 100}%` : item[name];
+      }
     },
     {
       title: 'Marketup rate',
       name: 'rsmarkuprate',
-      type: 'serialNumberShort'
+      type: 'serialNumberShort',
+      valueOf: (item, { name }) => {
+        return !Number.isNaN(item[name]) ? `${item[name] * 100}%` : item[name];
+      }
     },
     {
       title: '预估收费',

@@ -10,25 +10,40 @@ import style from './style.module.scss';
 
 const ProjectSelectField = createWithRemoteLoader({
   modules: ['components-core:Common@createListField', 'components-core:Table', 'components-core:Global@usePreset']
-})(({ remoteModules, ...others }) => {
+})(({ remoteModules, data, ...others }) => {
   const [createListField, Table, usePreset] = remoteModules;
   const { apis, ajax } = usePreset();
+  const formatValue = item => {
+    if (!item) {
+      return;
+    }
+    return Object.assign({}, item, {
+      value: item.id,
+      label: `${item.serialNum} ${item.name}`
+    });
+  };
   const props = Object.assign(
     {},
     {
-      api: apis.project.getList,
+      valueType: 'all',
+      api: Object.assign({}, apis.project.getList, { data }),
       dataFormat: data => {
         return {
-          list: data.projectList.map(item => {
-            return Object.assign({}, item, {
-              value: item.id,
-              label: `${item.serialNum} ${item.name}`
-            });
-          })
+          list: data.projectList.map(formatValue)
         };
       }
     },
-    others
+    others,
+    others.hasOwnProperty('value')
+      ? {
+          value: Array.isArray(others.value) ? others.value.map(formatValue) : formatValue(others.value)
+        }
+      : {},
+    others.hasOwnProperty('defaultValue')
+      ? {
+          defaultValue: Array.isArray(others.defaultValue) ? others.defaultValue.map(formatValue) : formatValue(others.defaultValue)
+        }
+      : {}
   );
   const gotoContract = useRefCallback(async item => {
     const { data } = await ajax(merge({}, apis.client.getContractSsoUrl, { params: { contractId: item.contractId } }));
