@@ -38,34 +38,56 @@ const BaseExample = createWithRemoteLoader({
   modules: ['components-core:Global@PureGlobal']
 })(({ remoteModules }) => {
   const [PureGlobal] = remoteModules;
-  return <PureGlobal preset={{
-    apis: {
-      client: {}, project: {
-        getList: {
-          loader: () => {
-            return projectListData.data;
-          }
-        }, getDetail: {
-          loader: () => {
-            return projectListData.data.projectList[0];
+  return (
+    <PureGlobal
+      preset={{
+        apis: {
+          client: {},
+          project: {
+            getList: {
+              loader: () => {
+                return projectListData.data;
+              }
+            },
+            getDetail: {
+              loader: () => {
+                return projectListData.data.projectList[0];
+              }
+            }
           }
         }
-      }
-    }
-  }}>
-    <Space>
-      <GenerateBill>{({ modal }) => {
-        return <Button onClick={() => {
-          modal();
-        }}>生成候选人账单</Button>;
-      }}</GenerateBill>
-      <GenerateProjectBill>{({ modal }) => {
-        return <Button onClick={() => {
-          modal();
-        }}>生成项目账单</Button>;
-      }}</GenerateProjectBill>
-    </Space>
-  </PureGlobal>;
+      }}
+    >
+      <Space>
+        <GenerateBill>
+          {({ modal }) => {
+            return (
+              <Button
+                onClick={() => {
+                  modal();
+                }}
+              >
+                生成候选人账单
+              </Button>
+            );
+          }}
+        </GenerateBill>
+        <GenerateProjectBill>
+          {({ modal }) => {
+            return (
+              <Button
+                onClick={() => {
+                  modal();
+                }}
+              >
+                生成项目账单
+              </Button>
+            );
+          }}
+        </GenerateProjectBill>
+      </Space>
+    </PureGlobal>
+  );
 });
 
 render(<BaseExample />);
@@ -84,25 +106,31 @@ const BaseExample = createWithRemoteLoader({
   modules: ['components-core:FormInfo@Form', 'components-core:Global@PureGlobal']
 })(({ remoteModules }) => {
   const [Form, PureGlobal] = remoteModules;
-  return (<PureGlobal preset={{
-      apis: {
-        client: {}, project: {
-          getList: {
-            loader: () => {
-              return projectListData.data;
-            }
-          }, getDetail: {
-            loader: () => {
-              return projectListData.data.projectList[0];
+  return (
+    <PureGlobal
+      preset={{
+        apis: {
+          client: {},
+          project: {
+            getList: {
+              loader: () => {
+                return projectListData.data;
+              }
+            },
+            getDetail: {
+              loader: () => {
+                return projectListData.data.projectList[0];
+              }
             }
           }
         }
-      }
-    }}>
+      }}
+    >
       <Form>
         <BillInfoFormInner />
       </Form>
-    </PureGlobal>);
+    </PureGlobal>
+  );
 });
 
 render(<BaseExample />);
@@ -121,25 +149,31 @@ const BaseExample = createWithRemoteLoader({
   modules: ['components-core:FormInfo@Form', 'components-core:Global@PureGlobal']
 })(({ remoteModules }) => {
   const [Form, PureGlobal] = remoteModules;
-  return (<PureGlobal preset={{
-    apis: {
-      client: {}, project: {
-        getList: {
-          loader: () => {
-            return projectListData.data;
-          }
-        }, getDetail: {
-          loader: () => {
-            return projectListData.data.projectList[0];
+  return (
+    <PureGlobal
+      preset={{
+        apis: {
+          client: {},
+          project: {
+            getList: {
+              loader: () => {
+                return projectListData.data;
+              }
+            },
+            getDetail: {
+              loader: () => {
+                return projectListData.data.projectList[0];
+              }
+            }
           }
         }
-      }
-    }
-  }}>
-    <Form>
-      <ProjectBillInfoFormInner />
-    </Form>
-  </PureGlobal>);
+      }}
+    >
+      <Form>
+        <ProjectBillInfoFormInner />
+      </Form>
+    </PureGlobal>
+  );
 });
 
 render(<BaseExample />);

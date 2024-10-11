@@ -16,9 +16,9 @@
 - _ContractSelect(@components/ContractSelect)
 
 ```jsx
-const {default:ContractSelect} = _ContractSelect;
-const BaseExample = ()=>{
-    return <ContractSelect />;
+const { default: ContractSelect } = _ContractSelect;
+const BaseExample = () => {
+  return <ContractSelect />;
 };
 
 render(<BaseExample />);
