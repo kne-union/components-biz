@@ -29,7 +29,7 @@ const ProjectSelectField = createWithRemoteLoader({
       api: Object.assign({}, apis.project.getList, { data }),
       dataFormat: data => {
         return {
-          list: data.projectList.map(formatValue)
+          list: (data.projectList || []).map(formatValue)
         };
       }
     },
