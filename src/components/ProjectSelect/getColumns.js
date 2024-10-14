@@ -56,7 +56,7 @@ const getColumns = () => {
       name: 'rsfl',
       type: 'serialNumberShort',
       valueOf: (item, { name }) => {
-        return !Number.isNaN(item[name]) ? `${item[name] * 100}%` : item[name];
+        return !Number.isNaN(item[name]) ? `${(item[name] * 100).toLocaleString()}%` : item[name];
       }
     },
     {
@@ -64,7 +64,7 @@ const getColumns = () => {
       name: 'rsmarkuprate',
       type: 'serialNumberShort',
       valueOf: (item, { name }) => {
-        return !Number.isNaN(item[name]) ? `${item[name] * 100}%` : item[name];
+        return !Number.isNaN(item[name]) ? `${(item[name] * 100).toLocaleString()}%` : item[name];
       }
     },
     {
