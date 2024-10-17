@@ -45,7 +45,8 @@ const BaseExample = createWithRemoteLoader({
       preset={{
         enums: {
           CONTRACT_STATE_ENUM
-        }, apis: {
+        },
+        apis: {
           client: {},
           project: {
             getList: {
@@ -58,7 +59,8 @@ const BaseExample = createWithRemoteLoader({
                 return projectListData.data.projectList[0];
               }
             }
-          }, contract: {
+          },
+          contract: {
             getList: {
               loader: () => {
                 return contractData;
@@ -137,7 +139,8 @@ const BaseExample = createWithRemoteLoader({
                 return projectListData.data.projectList[0];
               }
             }
-          }, contract: {
+          },
+          contract: {
             getList: {
               loader: () => {
                 return contractData;
@@ -172,35 +175,41 @@ const BaseExample = createWithRemoteLoader({
   modules: ['components-core:FormInfo@Form', 'components-core:Global@PureGlobal']
 })(({ remoteModules }) => {
   const [Form, PureGlobal] = remoteModules;
-  return (<PureGlobal
-    preset={{
-      enums: {
-        CONTRACT_STATE_ENUM
-      }, apis: {
-        client: {}, project: {
-          getList: {
-            loader: () => {
-              return projectListData.data;
+  return (
+    <PureGlobal
+      preset={{
+        enums: {
+          CONTRACT_STATE_ENUM
+        },
+        apis: {
+          client: {},
+          project: {
+            getList: {
+              loader: () => {
+                return projectListData.data;
+              }
+            },
+            getDetail: {
+              loader: () => {
+                return projectListData.data.projectList[0];
+              }
             }
-          }, getDetail: {
-            loader: () => {
-              return projectListData.data.projectList[0];
-            }
-          }
-        }, contract: {
-          getList: {
-            loader: () => {
-              return contractData;
+          },
+          contract: {
+            getList: {
+              loader: () => {
+                return contractData;
+              }
             }
           }
         }
-      }
-    }}
-  >
-    <Form>
-      <ProjectBillInfoFormInner />
-    </Form>
-  </PureGlobal>);
+      }}
+    >
+      <Form>
+        <ProjectBillInfoFormInner />
+      </Form>
+    </PureGlobal>
+  );
 });
 
 render(<BaseExample />);
