@@ -1,5 +1,6 @@
 import { createWithRemoteLoader } from '@kne/remote-loader';
 import ProjectSelect from '@components/ProjectSelect';
+import ContractSelect from '@components/ContractSelect';
 
 const BillInfoFormInner = createWithRemoteLoader({
   modules: ['components-core:FormInfo', 'components-field:BatchSelect']
@@ -12,7 +13,7 @@ const BillInfoFormInner = createWithRemoteLoader({
       <FormInfo
         list={[
           <Input name="client" label="客户" rule="REQ" />,
-          <Input name="contract" label="合同" rule="REQ" />,
+          <ContractSelect name="contract" label="合同" rule="REQ" />,
           <ProjectSelect name="project" label="项目" rule="REQ" />,
           <RadioGroup
             name="feeType"
