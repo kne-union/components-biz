@@ -133,6 +133,10 @@
         {
           "name": "_CandidateBill",
           "packageName": "@components/CandidateBill"
+        },
+        {
+          "name": "listData",
+          "packageName": "@components/CandidateBill/doc/list.json"
         }
       ]
     },
