@@ -182,11 +182,12 @@ render(<BaseExample />);
 
 - 账单中心
 - 账单中心
-- remoteLoader(@kne/remote-loader),_CandidateBill(@components/CandidateBill)
+- remoteLoader(@kne/remote-loader),_CandidateBill(@components/CandidateBill),listData(@components/CandidateBill/doc/list.json)
 
 ```jsx
-const { BillCenter } = _CandidateBill;
+const { BillCenter, BILL_STATE_ENUM } = _CandidateBill;
 const { createWithRemoteLoader } = remoteLoader;
+const { default: listData } = listData;
 const BaseExample = createWithRemoteLoader({
   modules: ['components-core:Global@PureGlobal', 'components-core:Layout']
 })(({ remoteModules }) => {
@@ -197,14 +198,22 @@ const BaseExample = createWithRemoteLoader({
         apis: {
           candidateBill: {
             getBillList: {
-              loader: () => {
-                return {
-                  pageData: [],
-                  totalCount: 0
-                };
-              }
+              loader: async () => listData
             }
           }
+        },
+        enums: {
+          BILL_STATE_ENUM,
+          invoiceProjectType: [
+            { value: 1, description: 'onsite' },
+            { value: 2, description: 'mapping' },
+            { value: 3, description: '项目管理' },
+            { value: 4, description: '项目启动金' },
+            { value: 5, description: '内推' },
+            { value: 6, description: '面试到岗' },
+            { value: 7, description: '入职到岗' },
+            { value: 8, description: '其他' }
+          ]
         }
       }}
     >
