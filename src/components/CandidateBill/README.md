@@ -27,7 +27,7 @@ render(<BaseExample />);
 
 - 生成账单
 - 生成账单
-- remoteLoader(@kne/remote-loader),antd(antd),_CandidateBill(@components/CandidateBill),_projectListData(@components/ProjectSelect/doc/projectList.json),_ContractSelect(@components/ContractSelect),_data(@components/ContractSelect/doc/contractListData.json)
+- remoteLoader(@kne/remote-loader),antd(antd),_CandidateBill(@components/CandidateBill),_projectListData(@components/ProjectSelect/doc/projectList.json),_ContractSelect(@components/ContractSelect),_data(@components/ContractSelect/doc/contractListData.json),_userListData(@components/CandidateSelect/doc/userListData.json),_positionListData(@components/CandidateSelect/doc/positionListData.json)
 
 ```jsx
 const { createWithRemoteLoader } = remoteLoader;
@@ -36,6 +36,12 @@ const { Button, Space } = antd;
 const { default: projectListData } = _projectListData;
 const { data: contractData } = _data;
 const { CONTRACT_STATE_ENUM } = _ContractSelect;
+
+const { default: userListData } = _userListData;
+const { default: positionListData } = _positionListData;
+const { data: userList } = userListData;
+const { data: positionList } = positionListData;
+
 const BaseExample = createWithRemoteLoader({
   modules: ['components-core:Global@PureGlobal']
 })(({ remoteModules }) => {
@@ -64,6 +70,19 @@ const BaseExample = createWithRemoteLoader({
             getList: {
               loader: () => {
                 return contractData;
+              }
+            }
+          },
+          ats: {
+            getTrackingList: {
+              loader: () => {
+                return userList;
+              }
+            }
+          }, position: {
+            getMyList: {
+              loader: () => {
+                return positionList;
               }
             }
           }
@@ -108,7 +127,7 @@ render(<BaseExample />);
 
 - 生成候选人账单表单
 - 生成候选人账单表单
-- remoteLoader(@kne/remote-loader),_CandidateBill(@components/CandidateBill),_projectListData(@components/ProjectSelect/doc/projectList.json),_ContractSelect(@components/ContractSelect),_data(@components/ContractSelect/doc/contractListData.json)
+- remoteLoader(@kne/remote-loader),_CandidateBill(@components/CandidateBill),_projectListData(@components/ProjectSelect/doc/projectList.json),_ContractSelect(@components/ContractSelect),_data(@components/ContractSelect/doc/contractListData.json),_userListData(@components/CandidateSelect/doc/userListData.json),_positionListData(@components/CandidateSelect/doc/positionListData.json)
 
 ```jsx
 const { BillInfoFormInner } = _CandidateBill;
@@ -116,6 +135,10 @@ const { createWithRemoteLoader } = remoteLoader;
 const { default: projectListData } = _projectListData;
 const { data: contractData } = _data;
 const { CONTRACT_STATE_ENUM } = _ContractSelect;
+const { default: userListData } = _userListData;
+const { default: positionListData } = _positionListData;
+const { data: userList } = userListData;
+const { data: positionList } = positionListData;
 const BaseExample = createWithRemoteLoader({
   modules: ['components-core:FormInfo@Form', 'components-core:Global@PureGlobal']
 })(({ remoteModules }) => {
@@ -144,6 +167,19 @@ const BaseExample = createWithRemoteLoader({
             getList: {
               loader: () => {
                 return contractData;
+              }
+            }
+          },
+          ats: {
+            getTrackingList: {
+              loader: () => {
+                return userList;
+              }
+            }
+          }, position: {
+            getMyList: {
+              loader: () => {
+                return positionList;
               }
             }
           }
@@ -163,7 +199,7 @@ render(<BaseExample />);
 
 - 生成项目账单表单
 - 生成项目账单表单
-- remoteLoader(@kne/remote-loader),_CandidateBill(@components/CandidateBill),_projectListData(@components/ProjectSelect/doc/projectList.json),_ContractSelect(@components/ContractSelect),_data(@components/ContractSelect/doc/contractListData.json)
+- remoteLoader(@kne/remote-loader),_CandidateBill(@components/CandidateBill),_projectListData(@components/ProjectSelect/doc/projectList.json),_ContractSelect(@components/ContractSelect),_data(@components/ContractSelect/doc/contractListData.json),_userListData(@components/CandidateSelect/doc/userListData.json),_positionListData(@components/CandidateSelect/doc/positionListData.json)
 
 ```jsx
 const { ProjectBillInfoFormInner } = _CandidateBill;
@@ -171,6 +207,12 @@ const { createWithRemoteLoader } = remoteLoader;
 const { default: projectListData } = _projectListData;
 const { data: contractData } = _data;
 const { CONTRACT_STATE_ENUM } = _ContractSelect;
+
+const { default: userListData } = _userListData;
+const { default: positionListData } = _positionListData;
+const { data: userList } = userListData;
+const { data: positionList } = positionListData;
+
 const BaseExample = createWithRemoteLoader({
   modules: ['components-core:FormInfo@Form', 'components-core:Global@PureGlobal']
 })(({ remoteModules }) => {
@@ -199,6 +241,19 @@ const BaseExample = createWithRemoteLoader({
             getList: {
               loader: () => {
                 return contractData;
+              }
+            }
+          },
+          ats: {
+            getTrackingList: {
+              loader: () => {
+                return userList;
+              }
+            }
+          }, position: {
+            getMyList: {
+              loader: () => {
+                return positionList;
               }
             }
           }

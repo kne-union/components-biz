@@ -1,42 +1,15 @@
 import { createWithRemoteLoader } from '@kne/remote-loader';
 import ProjectSelect from '@components/ProjectSelect';
 import ContractSelect from '@components/ContractSelect';
+import CandidateSelect from '@components/CandidateSelect';
 import get from 'lodash/get';
 
 const ProjectBillInfoFormInner = createWithRemoteLoader({
-  modules: ['components-core:FormInfo', 'components-field:BatchSelect']
+  modules: ['components-core:FormInfo']
 })(({ remoteModules }) => {
-  const [FormInfo, BatchSelect] = remoteModules;
+  const [FormInfo] = remoteModules;
   const { TableList, List } = FormInfo;
-  const { Input, RadioGroup, TextArea, Upload, MoneyInput, DatePicker, InputNumber } = FormInfo.fields;
-
-  const candidateField = (
-    <BatchSelect
-      labelRender={({ label, value }) => {
-        return `${label}:${(value && value.length) || 0}人`;
-      }}
-      label="本次账单候选人"
-      name="candidate"
-      rule="REQ"
-      minLength={1}
-      columns={[
-        {
-          title: '候选人姓名',
-          name: 'name',
-          type: 'user'
-        },
-        {
-          title: '职位',
-          name: 'position',
-          type: 'mainInfo',
-          hover: false,
-          primary: false
-        }
-      ]}
-      onAdd={(value, callback) => {}}
-      block
-    />
-  );
+  const { Input, RadioGroup, Upload, MoneyInput, DatePicker, InputNumber } = FormInfo.fields;
 
   const onsiteFields = [
       <MoneyInput name="field1" label="账单金额" rule="REQ" />,
@@ -52,8 +25,32 @@ const ProjectBillInfoFormInner = createWithRemoteLoader({
       <InputNumber name="field3" label="内推人数" rule="REQ" addonAfter="人" precision={1} />,
       <Upload block name="field4" label="内推名单" rule="REQ" />
     ],
-    interviewFields = [<MoneyInput name="field5" label="账单金额" rule="REQ" />, candidateField],
-    inductionFields = [<MoneyInput name="field5" label="账单金额" rule="REQ" />, candidateField],
+    interviewFields = [
+      <MoneyInput name="field5" label="账单金额" rule="REQ" />,
+      <CandidateSelect
+        labelRender={({ label, value }) => {
+          return `${label}:${(value && value.length) || 0}人`;
+        }}
+        label="本次账单候选人"
+        name="candidate"
+        rule="REQ"
+        minLength={1}
+        block
+      />
+    ],
+    inductionFields = [
+      <MoneyInput name="field5" label="账单金额" rule="REQ" />,
+      <CandidateSelect
+        labelRender={({ label, value }) => {
+          return `${label}:${(value && value.length) || 0}人`;
+        }}
+        label="本次账单候选人"
+        name="candidate"
+        rule="REQ"
+        minLength={1}
+        block
+      />
+    ],
     otherFields = [<MoneyInput name="field5" label="账单金额" rule="REQ" />, <Input name="type" label="项目类型" rule="REQ" />];
 
   const fieldsMapping = {

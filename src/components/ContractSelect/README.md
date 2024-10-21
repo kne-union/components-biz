@@ -54,7 +54,7 @@ const BaseExample = createWithRemoteLoader({
         }}
       >
         <ContractSelect name="contract" label="合同" />
-        <ContractSelect name="contract2" label="合同只读" disabled interceptor="array-single" />
+        <ContractSelect name="contract2" label="合同只读" disabled />
       </Form>
     </PureGlobal>
   );
