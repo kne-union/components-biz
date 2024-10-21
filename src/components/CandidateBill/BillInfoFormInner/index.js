@@ -1,10 +1,12 @@
 import { createWithRemoteLoader } from '@kne/remote-loader';
 import ProjectSelect from '@components/ProjectSelect';
+import ContractSelect from '@components/ContractSelect';
+import CandidateSelect from '@components/CandidateSelect';
 
 const BillInfoFormInner = createWithRemoteLoader({
-  modules: ['components-core:FormInfo', 'components-field:BatchSelect']
+  modules: ['components-core:FormInfo']
 })(({ remoteModules }) => {
-  const [FormInfo, BatchSelect] = remoteModules;
+  const [FormInfo] = remoteModules;
   const { TableList } = FormInfo;
   const { Input, RadioGroup, TextArea, Upload } = FormInfo.fields;
   return (
@@ -12,7 +14,7 @@ const BillInfoFormInner = createWithRemoteLoader({
       <FormInfo
         list={[
           <Input name="client" label="客户" rule="REQ" />,
-          <Input name="contract" label="合同" rule="REQ" />,
+          <ContractSelect name="contract" label="合同" rule="REQ" />,
           <ProjectSelect name="project" label="项目" rule="REQ" />,
           <RadioGroup
             name="feeType"
@@ -31,7 +33,7 @@ const BillInfoFormInner = createWithRemoteLoader({
       <FormInfo
         title="账单候选人"
         list={[
-          <BatchSelect
+          <CandidateSelect
             labelRender={({ label, value }) => {
               return `${label}:${(value && value.length) || 0}人`;
             }}
@@ -39,21 +41,6 @@ const BillInfoFormInner = createWithRemoteLoader({
             name="candidate"
             rule="REQ"
             minLength={1}
-            columns={[
-              {
-                title: '候选人姓名',
-                name: 'name',
-                type: 'user'
-              },
-              {
-                title: '职位',
-                name: 'position',
-                type: 'mainInfo',
-                hover: false,
-                primary: false
-              }
-            ]}
-            onAdd={(value, callback) => {}}
             block
           />
         ]}

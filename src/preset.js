@@ -6,6 +6,7 @@ import { preset as remoteLoaderPreset } from '@kne/remote-loader';
 import omit from 'lodash/omit';
 
 window.PUBLIC_URL = window.runtimePublicUrl || process.env.PUBLIC_URL;
+window.STATIC_BASE_URL = window.runtimeStaticBaseUrl || 'http://uc.dev.fatalent.cn';
 
 export const globalInit = async () => {
   const ajax = (() => {
@@ -78,8 +79,10 @@ export const globalInit = async () => {
 
   const componentsCoreRemote = {
     ...registry,
+    //url: 'http://localhost:3001',
+    //tpl: '{{url}}',
     remote: 'components-core',
-    defaultVersion: '0.2.49'
+    defaultVersion: '0.2.53'
   };
   remoteLoaderPreset({
     remotes: {
@@ -94,6 +97,11 @@ export const globalInit = async () => {
         ...registry,
         remote: 'components-iconfont',
         defaultVersion: '0.1.8'
+      },
+      'components-function': {
+        remote: 'components-function',
+        url: window.STATIC_BASE_URL,
+        defaultVersion: '1.0.0'
       },
       'components-biz':
         process.env.NODE_ENV === 'development'
