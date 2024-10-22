@@ -26,27 +26,32 @@ const BaseExample = createWithRemoteLoader({
   modules: ['components-core:FormInfo@Form', 'components-core:Global@PureGlobal']
 })(({ remoteModules }) => {
   const [Form, PureGlobal] = remoteModules;
-  return <PureGlobal preset={{
-    apis: {
-      ats: {
-        getTrackingList: {
-          loader: () => {
-            return userList;
+  return (
+    <PureGlobal
+      preset={{
+        apis: {
+          ats: {
+            getTrackingList: {
+              loader: () => {
+                return userList;
+              }
+            }
+          },
+          position: {
+            getMyList: {
+              loader: () => {
+                return positionList;
+              }
+            }
           }
         }
-      }, position: {
-        getMyList: {
-          loader: () => {
-            return positionList;
-          }
-        }
-      }
-    }
-  }}>
-    <Form>
-      <CandidateSelect name="candidate" label="候选人" />
-    </Form>
-  </PureGlobal>;
+      }}
+    >
+      <Form>
+        <CandidateSelect name="candidate" label="候选人" />
+      </Form>
+    </PureGlobal>
+  );
 });
 
 render(<BaseExample />);

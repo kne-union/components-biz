@@ -2,12 +2,12 @@ import { createWithRemoteLoader } from '@kne/remote-loader';
 import get from 'lodash/get';
 
 const HandsOff = createWithRemoteLoader({
-  modules: ['components-core:InfoPage', 'components-core:InfoPage@TableView', 'components-core:Enum']
+  modules: ['components-core:InfoPage', 'components-core:InfoPage@CentralContent', 'components-core:Enum']
 })(({ remoteModules, showRemark, data }) => {
-  const [InfoPage, TableView, Enum] = remoteModules;
+  const [InfoPage, CentralContent, Enum] = remoteModules;
   return (
     <InfoPage.Part title="hands-off信息">
-      <TableView
+      <CentralContent
         dataSource={data}
         columns={[
           {

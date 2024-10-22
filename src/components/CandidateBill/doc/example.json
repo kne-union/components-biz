@@ -133,6 +133,10 @@
         {
           "name": "_CandidateBill",
           "packageName": "@components/CandidateBill"
+        },
+        {
+          "name": "mockData",
+          "packageName": "@components/CandidateBill/doc/mock"
         }
       ]
     },
@@ -148,6 +152,10 @@
         {
           "name": "_CandidateBill",
           "packageName": "@components/CandidateBill"
+        },
+        {
+          "name": "mockData",
+          "packageName": "@components/CandidateBill/doc/mock"
         }
       ]
     }

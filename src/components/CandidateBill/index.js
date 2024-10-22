@@ -12,3 +12,5 @@ export { default as BillCenter } from './BillCenter';
 export { default as BillCenterDetail } from './BillCenterDetail';
 export { default as GenerateBill } from './GenerateBill';
 export { default as GenerateProjectBill } from './GenerateProjectBill';
+export { default as BILL_STATE_ENUM } from './BILL_STATE_ENUM';
+export { default as CONTRACT_STATE_ENUM } from './CONTRACT_STATE_ENUM';

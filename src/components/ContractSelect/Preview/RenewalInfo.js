@@ -9,14 +9,14 @@ import get from 'lodash/get';
 const RenewalInfo = createWithRemoteLoader({
   modules: [
     'components-core:InfoPage',
-    'components-core:InfoPage@TableView',
+    'components-core:InfoPage@CentralContent',
     'components-core:Icon',
     'components-core:Enum',
     'components-core:File@FileLink',
     'components-core:Common@SimpleBar'
   ]
 })(({ remoteModules, data }) => {
-  const [InfoPage, TableView, Icon, Enum, FileLink, SimpleBar] = remoteModules;
+  const [InfoPage, CentralContent, Icon, Enum, FileLink, SimpleBar] = remoteModules;
   const [recordOpen, setRecordOpen] = useState(false);
   return (
     <InfoPage.Part
@@ -44,7 +44,7 @@ const RenewalInfo = createWithRemoteLoader({
         </Popover>
       }
     >
-      <TableView
+      <CentralContent
         columns={[
           {
             name: 'contractRenewal.renewalStartDate',
