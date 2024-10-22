@@ -51,17 +51,20 @@ const getColumns = ({ formatView }) => {
     {
       name: 'preInvoiceAmount',
       title: '已预提金额',
-      type: 'serialNumberShort'
+      type: 'serialNumberShort',
+      valueOf: ({ preInvoiceAmount }) => formatView(preInvoiceAmount, 'number--100')
     },
     {
       name: 'invoicedAmount',
       title: '已开票金额',
-      type: 'serialNumberShort'
+      type: 'serialNumberShort',
+      valueOf: ({ invoicedAmount }) => formatView(invoicedAmount, 'number--100')
     },
     {
       name: 'paidAmount',
       title: '已到款金额',
-      type: 'serialNumberShort'
+      type: 'serialNumberShort',
+      valueOf: ({ paidAmount }) => formatView(paidAmount, 'number--100')
     },
     {
       name: 'uid',
