@@ -32,22 +32,6 @@
         {
           "name": "_projectListData",
           "packageName": "@components/ProjectSelect/doc/projectList.json"
-        },
-        {
-          "name": "_ContractSelect",
-          "packageName": "@components/ContractSelect"
-        },
-        {
-          "name": "_data",
-          "packageName": "@components/ContractSelect/doc/contractListData.json"
-        },
-        {
-          "name": "_userListData",
-          "packageName": "@components/CandidateSelect/doc/userListData.json"
-        },
-        {
-          "name": "_positionListData",
-          "packageName": "@components/CandidateSelect/doc/positionListData.json"
         }
       ]
     },
@@ -67,22 +51,6 @@
         {
           "name": "_projectListData",
           "packageName": "@components/ProjectSelect/doc/projectList.json"
-        },
-        {
-          "name": "_ContractSelect",
-          "packageName": "@components/ContractSelect"
-        },
-        {
-          "name": "_data",
-          "packageName": "@components/ContractSelect/doc/contractListData.json"
-        },
-        {
-          "name": "_userListData",
-          "packageName": "@components/CandidateSelect/doc/userListData.json"
-        },
-        {
-          "name": "_positionListData",
-          "packageName": "@components/CandidateSelect/doc/positionListData.json"
         }
       ]
     },
@@ -102,22 +70,6 @@
         {
           "name": "_projectListData",
           "packageName": "@components/ProjectSelect/doc/projectList.json"
-        },
-        {
-          "name": "_ContractSelect",
-          "packageName": "@components/ContractSelect"
-        },
-        {
-          "name": "_data",
-          "packageName": "@components/ContractSelect/doc/contractListData.json"
-        },
-        {
-          "name": "_userListData",
-          "packageName": "@components/CandidateSelect/doc/userListData.json"
-        },
-        {
-          "name": "_positionListData",
-          "packageName": "@components/CandidateSelect/doc/positionListData.json"
         }
       ]
     },
@@ -135,8 +87,8 @@
           "packageName": "@components/CandidateBill"
         },
         {
-          "name": "listData",
-          "packageName": "@components/CandidateBill/doc/list.json"
+          "name": "mockData",
+          "packageName": "@components/CandidateBill/doc/mock"
         }
       ]
     },
@@ -152,6 +104,10 @@
         {
           "name": "_CandidateBill",
           "packageName": "@components/CandidateBill"
+        },
+        {
+          "name": "mockData",
+          "packageName": "@components/CandidateBill/doc/mock"
         }
       ]
     }

@@ -27,7 +27,7 @@ render(<BaseExample />);
 
 - 生成账单
 - 生成账单
-- remoteLoader(@kne/remote-loader),antd(antd),_CandidateBill(@components/CandidateBill),_projectListData(@components/ProjectSelect/doc/projectList.json),_ContractSelect(@components/ContractSelect),_data(@components/ContractSelect/doc/contractListData.json),_userListData(@components/CandidateSelect/doc/userListData.json),_positionListData(@components/CandidateSelect/doc/positionListData.json)
+- remoteLoader(@kne/remote-loader),antd(antd),_CandidateBill(@components/CandidateBill),_projectListData(@components/ProjectSelect/doc/projectList.json)
 
 ```jsx
 const { createWithRemoteLoader } = remoteLoader;
@@ -79,7 +79,8 @@ const BaseExample = createWithRemoteLoader({
                 return userList;
               }
             }
-          }, position: {
+          },
+          position: {
             getMyList: {
               loader: () => {
                 return positionList;
@@ -127,7 +128,7 @@ render(<BaseExample />);
 
 - 生成候选人账单表单
 - 生成候选人账单表单
-- remoteLoader(@kne/remote-loader),_CandidateBill(@components/CandidateBill),_projectListData(@components/ProjectSelect/doc/projectList.json),_ContractSelect(@components/ContractSelect),_data(@components/ContractSelect/doc/contractListData.json),_userListData(@components/CandidateSelect/doc/userListData.json),_positionListData(@components/CandidateSelect/doc/positionListData.json)
+- remoteLoader(@kne/remote-loader),_CandidateBill(@components/CandidateBill),_projectListData(@components/ProjectSelect/doc/projectList.json)
 
 ```jsx
 const { BillInfoFormInner } = _CandidateBill;
@@ -176,7 +177,8 @@ const BaseExample = createWithRemoteLoader({
                 return userList;
               }
             }
-          }, position: {
+          },
+          position: {
             getMyList: {
               loader: () => {
                 return positionList;
@@ -199,7 +201,7 @@ render(<BaseExample />);
 
 - 生成项目账单表单
 - 生成项目账单表单
-- remoteLoader(@kne/remote-loader),_CandidateBill(@components/CandidateBill),_projectListData(@components/ProjectSelect/doc/projectList.json),_ContractSelect(@components/ContractSelect),_data(@components/ContractSelect/doc/contractListData.json),_userListData(@components/CandidateSelect/doc/userListData.json),_positionListData(@components/CandidateSelect/doc/positionListData.json)
+- remoteLoader(@kne/remote-loader),_CandidateBill(@components/CandidateBill),_projectListData(@components/ProjectSelect/doc/projectList.json)
 
 ```jsx
 const { ProjectBillInfoFormInner } = _CandidateBill;
@@ -250,7 +252,8 @@ const BaseExample = createWithRemoteLoader({
                 return userList;
               }
             }
-          }, position: {
+          },
+          position: {
             getMyList: {
               loader: () => {
                 return positionList;
@@ -273,12 +276,12 @@ render(<BaseExample />);
 
 - 账单中心
 - 账单中心
-- remoteLoader(@kne/remote-loader),_CandidateBill(@components/CandidateBill),listData(@components/CandidateBill/doc/list.json)
+- remoteLoader(@kne/remote-loader),_CandidateBill(@components/CandidateBill),mockData(@components/CandidateBill/doc/mock)
 
 ```jsx
 const { BillCenter, BILL_STATE_ENUM } = _CandidateBill;
 const { createWithRemoteLoader } = remoteLoader;
-const { default: listData } = listData;
+const { listData } = mockData;
 const BaseExample = createWithRemoteLoader({
   modules: ['components-core:Global@PureGlobal', 'components-core:Layout']
 })(({ remoteModules }) => {
@@ -321,11 +324,12 @@ render(<BaseExample />);
 
 - 账单详情
 - 账单详情
-- remoteLoader(@kne/remote-loader),_CandidateBill(@components/CandidateBill)
+- remoteLoader(@kne/remote-loader),_CandidateBill(@components/CandidateBill),mockData(@components/CandidateBill/doc/mock)
 
 ```jsx
 const { BillCenterDetail } = _CandidateBill;
 const { createWithRemoteLoader } = remoteLoader;
+const { detailData } = mockData;
 const BaseExample = createWithRemoteLoader({
   modules: ['components-core:Global@PureGlobal', 'components-core:Layout']
 })(({ remoteModules }) => {
@@ -336,11 +340,23 @@ const BaseExample = createWithRemoteLoader({
         apis: {
           candidateBill: {
             getBillDetail: {
-              loader: () => {
-                return {};
-              }
+              loader: () => detailData
             }
           }
+        },
+        enums: {
+          CONTRACT_STATE_ENUM: [
+            {value: 1, description: '待提交审核', type: 'info' },
+            {value: 2, description: '审核中', type: 'progress' },
+            {value: 3, description: '已撤销', type: 'default' },
+            {value: 4, description: '审核拒绝', type: 'danger' },
+            {value: 5, description: '审核通过', type: 'success' },
+            {value: 6, description: '审核拒绝合同副本', type: 'danger' },
+            {value: 7, description: '已过期' },
+            {value: 8, description: '续签审核中', type: 'progress' },
+            {value: 9, description: '续签审核拒绝', type: 'danger' },
+            {value: 10, description: '续签审核通过', type: 'success' }
+          ]
         }
       }}
     >
