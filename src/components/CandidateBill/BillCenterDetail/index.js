@@ -24,6 +24,21 @@ const Tips = createWithRemoteLoader({
   );
 });
 
+const TrackingListContent = ({ trackingList }) => {
+  return (
+    <Space wrap={true}>
+      {(trackingList || []).map((item, index) => {
+        const { cvId, jdId, trackingId, cvName } = item;
+        return (
+          <Typography.Link key={index} href={`/ats/candidate/${cvId}?jobId=${jdId}&id=${trackingId}`} target="_blank">
+            {cvName}
+          </Typography.Link>
+        );
+      })}
+    </Space>
+  );
+};
+
 const BillCenterDetail = createWithRemoteLoader({
   modules: [
     'components-core:Layout@Page',
@@ -90,18 +105,7 @@ const BillCenterDetail = createWithRemoteLoader({
           billAmount,
           {
             label: '账单候选人',
-            content: (
-              <Space wrap={true}>
-                {(trackingList || []).map((item, index) => {
-                  const { cvId, jdId, trackingId, cvName } = item;
-                  return (
-                    <Typography.Link key={index} href={`/ats/candidate/${cvId}?jobId=${jdId}&id=${trackingId}`} target="_blank">
-                      {cvName}
-                    </Typography.Link>
-                  );
-                })}
-              </Space>
-            )
+            content: <TrackingListContent trackingList={trackingList} />
           }
         ];
         break;
@@ -188,28 +192,49 @@ const BillCenterDetail = createWithRemoteLoader({
                       </InfoPage.Collapse>
                     </>
                   )}
-                </InfoPage.Part>
-                <InfoPage.Part>
-                  <CentralContent
-                    dataSource={bill}
-                    col={1}
-                    columns={[
-                      { name: 'amount', title: '账单总金额', render: value => `${value ? formatView(value, 'number--100') : 0}元` },
-                      { name: 'remark', title: '备注' },
-                      {
-                        name: 'attachments',
-                        title: '附件',
-                        render: attachments =>
-                          (attachments || []).map((item, index) => {
-                            return (
-                              <Space key={index} direction="vertical">
-                                <FilePreview originName={item.originalName} value={item.id} />
-                              </Space>
-                            );
-                          })
-                      }
-                    ]}
-                  />
+                  <InfoPage.Part>
+                    <CentralContent
+                      dataSource={bill}
+                      col={1}
+                      columns={[
+                        {
+                          valueIsEmpty: () => false,
+                          name: 'tracking',
+                          title: '账单候选人',
+                          render: () => <TrackingListContent trackingList={billItems[0].trackingList} />,
+                          display: get(bill, 'type') !== 1
+                        },
+                        {
+                          valueIsEmpty: () => false,
+                          name: 'typeId',
+                          title: '账单类目',
+                          render: () => (billItems[0].billItem.typeId ? billItems[0].billItem.typeName : ''),
+                          display: get(bill, 'type') !== 1
+                        },
+                        {
+                          name: 'amount',
+                          title: '标准账单总金额',
+                          render: value => `${value ? formatView(value, 'number--100') : 0}元`,
+                          display: get(bill, 'type') !== 1
+                        },
+                        { name: 'amount', title: '账单总金额', render: value => `${value ? formatView(value, 'number--100') : 0}元` },
+                        { name: 'remark', title: '备注' },
+                        { name: 'amountDiffReason', title: '标准账单总金额与自填账单总金额不一致的原因', display: get(bill, 'type') !== 1 },
+                        {
+                          name: 'attachments',
+                          title: '附件',
+                          render: attachments =>
+                            (attachments || []).map((item, index) => {
+                              return (
+                                <Space key={index} direction="vertical">
+                                  <FilePreview originName={item.originalName} value={item.id} />
+                                </Space>
+                              );
+                            })
+                        }
+                      ]}
+                    />
+                  </InfoPage.Part>
                 </InfoPage.Part>
                 <InfoPage.Part title="付款信息">
                   <CentralContent
