@@ -7,18 +7,18 @@ import ContractTerm from '../ContractTerm';
 const Basic = createWithRemoteLoader({
   modules: [
     'components-core:InfoPage',
-    'components-core:InfoPage@TableView',
+    'components-core:InfoPage@CentralContent',
     'components-core:Enum',
     'components-core:Modal@ModalButton',
     'components-core:Global@usePreset',
     'components-core:File@FileLink'
   ]
 })(({ remoteModules, data }) => {
-  const [InfoPage, TableView, Enum, ModalButton, usePreset, FileLink] = remoteModules;
+  const [InfoPage, CentralContent, Enum, ModalButton, usePreset, FileLink] = remoteModules;
   const { apis } = usePreset();
   return (
     <InfoPage.Part title="合同基本信息">
-      <TableView
+      <CentralContent
         dataSource={data}
         columns={[
           {

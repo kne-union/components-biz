@@ -3,11 +3,10 @@ import Fetch from '@kne/react-fetch';
 import { useSearchParams } from 'react-router-dom';
 import get from 'lodash/get';
 import dayjs from 'dayjs';
-import { Space, Typography, Row, Col } from 'antd';
+import { Col, Row, Space, Typography } from 'antd';
 
 import RightOptions from './RightOptions';
-import allocationFormat from '../allocationFormat';
-import { formatMoney } from '../numberFormat';
+import Allocations from './Allocation';
 
 const Tips = createWithRemoteLoader({
   modules: ['component-core:Tooltip', 'components-core:Icon']
@@ -30,14 +29,15 @@ const BillCenterDetail = createWithRemoteLoader({
     'components-core:Layout@Page',
     'components-core:Global@usePreset',
     'components-core:InfoPage',
-    'components-core:InfoPage@TableView',
+    'components-core:InfoPage@CentralContent',
     'components-core:Content',
     'components-core:FilePreview',
     'components-core:StateTag',
-    'components-core:Enum'
+    'components-core:Enum',
+    'components-core:InfoPage@formatView'
   ]
 })(({ remoteModules, ...props }) => {
-  const [Page, usePreset, InfoPage, TableView, Content, FilePreview, StateTag, Enum] = remoteModules;
+  const [Page, usePreset, InfoPage, CentralContent, Content, FilePreview, StateTag, Enum, formatView] = remoteModules;
   const { apis } = usePreset();
   const [searchParams] = useSearchParams();
   const calcList = (billItem, trackingList) => {
@@ -45,7 +45,7 @@ const BillCenterDetail = createWithRemoteLoader({
 
     const billAmount = {
       label: '账单金额',
-      content: <Tips tips="和客户确认的发票金额">{`${get(billItem, `amount`) ? formatMoney(get(billItem, `amount`)) : 0}元`}</Tips>
+      content: <Tips tips="和客户确认的发票金额">{`${get(billItem, `amount`) ? formatView(get(billItem, `amount`), 'number--100') : 0}元`}</Tips>
     };
 
     const attachmentsContent = (get(billItem, 'attachments') || []).map((item, index) => {
@@ -128,7 +128,7 @@ const BillCenterDetail = createWithRemoteLoader({
             <InfoPage>
               <InfoPage.Part title="账单信息">
                 <InfoPage.Part>
-                  <TableView
+                  <CentralContent
                     dataSource={bill}
                     col={1}
                     columns={[
@@ -190,11 +190,11 @@ const BillCenterDetail = createWithRemoteLoader({
                   )}
                 </InfoPage.Part>
                 <InfoPage.Part>
-                  <TableView
+                  <CentralContent
                     dataSource={bill}
                     col={1}
                     columns={[
-                      { name: 'amount', title: '账单总金额', render: value => `${value ? formatMoney(value) : 0}元` },
+                      { name: 'amount', title: '账单总金额', render: value => `${value ? formatView(value, 'number--100') : 0}元` },
                       { name: 'remark', title: '备注' },
                       {
                         name: 'attachments',
@@ -212,7 +212,7 @@ const BillCenterDetail = createWithRemoteLoader({
                   />
                 </InfoPage.Part>
                 <InfoPage.Part title="付款信息">
-                  <TableView
+                  <CentralContent
                     dataSource={bill}
                     col={1}
                     columns={[
@@ -239,28 +239,7 @@ const BillCenterDetail = createWithRemoteLoader({
                   />
                 </InfoPage.Part>
                 <InfoPage.Part title="业绩分配">
-                  <InfoPage.Collapse defaultActiveKey={(allocations || []).map(allocation => allocation.id)}>
-                    {(allocations || []).map((allocation, index) => {
-                      const { name, amount, amountPercent } = allocationFormat(allocation, {
-                        userInfos,
-                        billAmount: bill.amount
-                      });
-                      return (
-                        <InfoPage.Collapse.Panel key={allocation.id} header={`账单类目${index + 1}`}>
-                          <Content
-                            labelAlign="auto"
-                            col={3}
-                            gutter={[0, 12]}
-                            list={[
-                              { label: '分配用户', content: name },
-                              { label: '分配金额', content: `${amount}元` },
-                              { label: '分配比例', content: `${amountPercent}` }
-                            ]}
-                          />
-                        </InfoPage.Collapse.Panel>
-                      );
-                    })}
-                  </InfoPage.Collapse>
+                  <Allocations allocations={allocations} userInfos={userInfos} billAmount={get(bill, 'amount')} />
                 </InfoPage.Part>
               </InfoPage.Part>
             </InfoPage>

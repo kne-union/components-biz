@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-const getColumns = () => {
+const getColumns = ({ formatView }) => {
   return [
     {
       name: 'serialNumber',
@@ -25,7 +25,8 @@ const getColumns = () => {
     {
       name: 'amount',
       title: '账单总金额',
-      type: 'other'
+      type: 'other',
+      valueOf: ({ amount }) => formatView(amount, 'number--100')
     },
     {
       name: 'clientName',
@@ -38,7 +39,8 @@ const getColumns = () => {
     {
       name: 'type',
       title: '账单类目',
-      type: 'otherSmall'
+      type: 'otherSmall',
+      valueOf: ({ type }) => (type ? { 1: '项目票', 2: '单候选人开票', 3: '多候选人开票' }[type] : '-')
     },
     // TODO 暂时不做候选人状态
     // {

@@ -9,10 +9,11 @@ const BillCenter = createWithRemoteLoader({
     'components-core:Filter',
     'components-core:Global@usePreset',
     'components-core:StateBar',
-    'components-core:Enum'
+    'components-core:Enum',
+    'components-core:InfoPage@formatView'
   ]
 })(({ remoteModules }) => {
-  const [TablePage, Filter, usePreset, StateBar, Enum] = remoteModules;
+  const [TablePage, Filter, usePreset, StateBar, Enum, formatView] = remoteModules;
   const { apis } = usePreset();
   const { SearchInput, getFilterValue, fields: filterFields } = Filter;
   const { AdvancedSelectFilterItem } = filterFields;
@@ -67,7 +68,7 @@ const BillCenter = createWithRemoteLoader({
               )
             }}
             columns={[
-              ...getColumns(),
+              ...getColumns({ formatView }),
               {
                 name: 'options',
                 title: '操作',
