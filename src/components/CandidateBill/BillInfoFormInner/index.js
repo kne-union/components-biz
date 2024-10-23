@@ -8,7 +8,7 @@ const BillInfoFormInner = createWithRemoteLoader({
 })(({ remoteModules }) => {
   const [FormInfo] = remoteModules;
   const { TableList } = FormInfo;
-  const { Input, RadioGroup, TextArea, Upload } = FormInfo.fields;
+  const { Input, RadioGroup, MoneyInput, TextArea, Upload } = FormInfo.fields;
   return (
     <>
       <FormInfo
@@ -61,8 +61,8 @@ const BillInfoFormInner = createWithRemoteLoader({
             ]}
             block
           />,
-          <Input name="normalTotalFee" label="标准账单总金额" rule="REQ" />,
-          <Input name="totalFee" label="账单总金额" rule="REQ" />,
+          <MoneyInput name="normalTotalFee" label="标准账单总金额" rule="REQ" />,
+          <MoneyInput name="totalFee" label="账单总金额" rule="REQ" />,
           <TextArea name="reason" label="标准账单总金额与自填账单总金额不一致的原因" rule="REQ" block />,
           <TextArea name="description" label="备注" rule="REQ" block />,
           <Upload name="files" label="附件" block />
@@ -74,7 +74,7 @@ const BillInfoFormInner = createWithRemoteLoader({
         name="fenpei"
         list={[
           <Input name="user" label="分配用户" rule="REQ" />,
-          <Input name="fee" label="分配金额" rule="REQ" />,
+          <MoneyInput name="fee" label="分配金额" rule="REQ" />,
           <Input name="bili" label="分配比例" rule="REQ" />
         ]}
       />
