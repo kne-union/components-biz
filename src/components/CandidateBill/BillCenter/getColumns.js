@@ -9,7 +9,7 @@ const getColumns = ({ formatView }) => {
       primary: true,
       hover: true,
       onClick: ({ colItem }) => {
-        window.open(`/bill/${get(colItem, 'id')}`, '_blank');
+        window.open(`/bill-center/${get(colItem, 'id')}`, '_blank');
       }
     },
     {

@@ -9,6 +9,40 @@ const BaseExample = createWithRemoteLoader({
     <PureGlobal
       preset={{
         apis: {
+          client: {},
+          project: {
+            getList: {
+              loader: () => {
+                return projectListData.data;
+              }
+            },
+            getDetail: {
+              loader: () => {
+                return projectListData.data.projectList[0];
+              }
+            }
+          },
+          contract: {
+            getList: {
+              loader: () => {
+                return contractData;
+              }
+            }
+          },
+          ats: {
+            getTrackingList: {
+              loader: () => {
+                return userList;
+              }
+            }
+          },
+          position: {
+            getMyList: {
+              loader: () => {
+                return positionList;
+              }
+            }
+          },
           candidateBill: {
             getBillList: {
               loader: async () => listData

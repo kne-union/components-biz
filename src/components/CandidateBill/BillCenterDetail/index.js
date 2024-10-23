@@ -1,28 +1,12 @@
 import { createWithRemoteLoader } from '@kne/remote-loader';
 import Fetch from '@kne/react-fetch';
-import { useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import get from 'lodash/get';
 import dayjs from 'dayjs';
 import { Col, Row, Space, Typography } from 'antd';
 
 import RightOptions from './RightOptions';
 import Allocations from './Allocation';
-
-const Tips = createWithRemoteLoader({
-  modules: ['component-core:Tooltip', 'components-core:Icon']
-})(({ remoteModules, children, tips }) => {
-  const [Tooltip, Icon] = remoteModules;
-  return (
-    <Space>
-      <span>{children}</span>
-      <Tooltip content={tips}>
-        <span>
-          <Icon type="icon-xinxi-miaobian" />
-        </span>
-      </Tooltip>
-    </Space>
-  );
-});
 
 const TrackingListContent = ({ trackingList }) => {
   return (
@@ -54,13 +38,13 @@ const BillCenterDetail = createWithRemoteLoader({
 })(({ remoteModules, ...props }) => {
   const [Page, usePreset, InfoPage, CentralContent, Content, FilePreview, StateTag, Enum, formatView] = remoteModules;
   const { apis } = usePreset();
-  const [searchParams] = useSearchParams();
+  const { id } = useParams();
   const calcList = (billItem, trackingList) => {
     const typeId = get(billItem, `typeId`);
 
     const billAmount = {
       label: '账单金额',
-      content: <Tips tips="和客户确认的发票金额">{`${get(billItem, `amount`) ? formatView(get(billItem, `amount`), 'number--100') : 0}元`}</Tips>
+      content: `${get(billItem, `amount`) ? formatView(get(billItem, `amount`), 'number--100') : 0}元`
     };
 
     const attachmentsContent = (get(billItem, 'attachments') || []).map((item, index) => {
@@ -124,7 +108,7 @@ const BillCenterDetail = createWithRemoteLoader({
   };
   return (
     <Fetch
-      {...Object.assign({}, apis.candidateBill.getBillDetail, { params: { id: searchParams.get('id') } })}
+      {...Object.assign({}, apis.candidateBill.getBillDetail, { params: { id } })}
       render={({ data, reload }) => {
         const { bill, billItems, allocations, userInfos } = data;
         return (
