@@ -24,7 +24,7 @@ const Allocations = createWithRemoteLoader({
       {(allocations || []).map((allocation, index) => {
         const { name, amount, amountPercent } = allocationFormat(allocation);
         return (
-          <InfoPage.Collapse.Panel key={allocation.id} header={`账单类目${index + 1}`}>
+          <InfoPage.Collapse.Panel key={allocation.id} header={`业绩分配${index + 1}`}>
             <Content
               labelAlign="auto"
               col={3}
