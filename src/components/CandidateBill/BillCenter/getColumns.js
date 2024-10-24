@@ -37,10 +37,10 @@ const getColumns = ({ formatView }) => {
       }
     },
     {
-      name: 'type',
+      name: 'typeNames',
       title: '账单类目',
       type: 'otherSmall',
-      valueOf: ({ type }) => (type ? { 1: '项目票', 2: '单候选人开票', 3: '多候选人开票' }[type] : '-')
+      valueOf: ({ typeNames }) => typeNames.join('，')
     },
     // TODO 暂时不做候选人状态
     // {

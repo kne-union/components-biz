@@ -137,6 +137,10 @@
         {
           "name": "mockData",
           "packageName": "@components/CandidateBill/doc/mock"
+        },
+        {
+          "name": "_lodash",
+          "packageName": "lodash"
         }
       ]
     },
