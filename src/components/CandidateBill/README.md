@@ -27,7 +27,7 @@ render(<BaseExample />);
 
 - 生成账单
 - 生成账单
-- remoteLoader(@kne/remote-loader),antd(antd),_CandidateBill(@components/CandidateBill),_projectListData(@components/ProjectSelect/doc/projectList.json),_ContractSelect(@components/ContractSelect),_data(@components/ContractSelect/doc/contractListData.json),_userListData(@components/CandidateSelect/doc/userListData.json),_positionListData(@components/CandidateSelect/doc/positionListData.json)
+- remoteLoader(@kne/remote-loader),antd(antd),_CandidateBill(@components/CandidateBill),_projectListData(@components/ProjectSelect/doc/projectList.json),_ContractSelect(@components/ContractSelect),_data(@components/ContractSelect/doc/contractListData.json),_userListData(@components/CandidateSelect/doc/userListData.json),_positionListData(@components/CandidateSelect/doc/positionListData.json),_paymentData(@components/BillNotice/doc/paymentData.json)
 
 ```jsx
 const { createWithRemoteLoader } = remoteLoader;
@@ -41,6 +41,8 @@ const { default: userListData } = _userListData;
 const { default: positionListData } = _positionListData;
 const { data: userList } = userListData;
 const { data: positionList } = positionListData;
+
+const { default: paymentData } = _paymentData;
 
 const BaseExample = createWithRemoteLoader({
   modules: ['components-core:Global@PureGlobal']
@@ -84,6 +86,13 @@ const BaseExample = createWithRemoteLoader({
             getMyList: {
               loader: () => {
                 return positionList;
+              }
+            }
+          },
+          bill: {
+            save: {
+              loader: () => {
+                return paymentData;
               }
             }
           }
@@ -357,7 +366,7 @@ const BaseExample = createWithRemoteLoader({
               loader: async () => listData
             },
             getBillDetail: {
-              loader: async() => listData.data[0]
+              loader: async () => listData.data[0]
             },
             saveBill: {
               loader: () => {}

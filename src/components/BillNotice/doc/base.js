@@ -1,7 +1,7 @@
-const { default: PaymentNotice } = _PaymentNotice;
+const { default: BillNotice } = _BillNotice;
 const { default: paymentData } = _paymentData;
 const BaseExample = () => {
-  return <PaymentNotice data={paymentData} />;
+  return <BillNotice data={paymentData} />;
 };
 
 render(<BaseExample />);

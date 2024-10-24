@@ -4,7 +4,7 @@ import getFormData from './getFormData';
 import parseTemplate from './parseTemplate';
 import '@kne/format-document-builder/dist/index.css';
 
-const PaymentNotice = forwardRef(({ data: paymentNoticeData, ...others }, ref) => {
+const BillNotice = forwardRef(({ data: paymentNoticeData, ...others }, ref) => {
   const { userInfo } = paymentNoticeData;
   const paymentPdf = useMemo(() => {
     const { paymentPdfInit } = paymentNoticeData;
@@ -28,4 +28,4 @@ const PaymentNotice = forwardRef(({ data: paymentNoticeData, ...others }, ref) =
   );
 });
 
-export default PaymentNotice;
+export default BillNotice;
