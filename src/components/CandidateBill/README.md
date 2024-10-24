@@ -27,7 +27,7 @@ render(<BaseExample />);
 
 - 生成账单
 - 生成账单
-- remoteLoader(@kne/remote-loader),antd(antd),_CandidateBill(@components/CandidateBill),_projectListData(@components/ProjectSelect/doc/projectList.json),_ContractSelect(@components/ContractSelect),_data(@components/ContractSelect/doc/contractListData.json),_userListData(@components/CandidateSelect/doc/userListData.json),_positionListData(@components/CandidateSelect/doc/positionListData.json)
+- remoteLoader(@kne/remote-loader),antd(antd),_CandidateBill(@components/CandidateBill),_projectListData(@components/ProjectSelect/doc/projectList.json),_ContractSelect(@components/ContractSelect),_data(@components/ContractSelect/doc/contractListData.json),_userListData(@components/CandidateSelect/doc/userListData.json),_positionListData(@components/CandidateSelect/doc/positionListData.json),_paymentData(@components/BillNotice/doc/paymentData.json)
 
 ```jsx
 const { createWithRemoteLoader } = remoteLoader;
@@ -42,84 +42,80 @@ const { default: positionListData } = _positionListData;
 const { data: userList } = userListData;
 const { data: positionList } = positionListData;
 
+const { default: paymentData } = _paymentData;
+
 const BaseExample = createWithRemoteLoader({
   modules: ['components-core:Global@PureGlobal']
 })(({ remoteModules }) => {
   const [PureGlobal] = remoteModules;
-  return (
-    <PureGlobal
-      preset={{
-        enums: {
-          CONTRACT_STATE_ENUM
-        },
-        apis: {
-          client: {},
-          project: {
-            getList: {
-              loader: () => {
-                return projectListData.data;
-              }
-            },
-            getDetail: {
-              loader: () => {
-                return projectListData.data.projectList[0];
-              }
+  return (<PureGlobal
+    preset={{
+      enums: {
+        CONTRACT_STATE_ENUM
+      }, apis: {
+        client: {}, project: {
+          getList: {
+            loader: () => {
+              return projectListData.data;
             }
-          },
-          contract: {
-            getList: {
-              loader: () => {
-                return contractData;
-              }
+          }, getDetail: {
+            loader: () => {
+              return projectListData.data.projectList[0];
             }
-          },
-          ats: {
-            getTrackingList: {
-              loader: () => {
-                return userList;
-              }
+          }
+        }, contract: {
+          getList: {
+            loader: () => {
+              return contractData;
             }
-          },
-          position: {
-            getMyList: {
-              loader: () => {
-                return positionList;
-              }
+          }
+        }, ats: {
+          getTrackingList: {
+            loader: () => {
+              return userList;
+            }
+          }
+        }, position: {
+          getMyList: {
+            loader: () => {
+              return positionList;
+            }
+          }
+        }, bill: {
+          save: {
+            loader: () => {
+              return paymentData;
             }
           }
         }
-      }}
-    >
-      <Space>
-        <GenerateBill>
-          {({ modal }) => {
-            return (
-              <Button
-                onClick={() => {
-                  modal();
-                }}
-              >
-                生成候选人账单
-              </Button>
-            );
-          }}
-        </GenerateBill>
-        <GenerateProjectBill>
-          {({ modal }) => {
-            return (
-              <Button
-                onClick={() => {
-                  modal();
-                }}
-              >
-                生成项目账单
-              </Button>
-            );
-          }}
-        </GenerateProjectBill>
-      </Space>
-    </PureGlobal>
-  );
+      }
+    }}
+  >
+    <Space>
+      <GenerateBill>
+        {({ modal }) => {
+          return (<Button
+            onClick={() => {
+              modal();
+            }}
+          >
+            生成候选人账单
+          </Button>);
+        }}
+      </GenerateBill>
+      <GenerateProjectBill>
+        {({ modal }) => {
+          return (<Button
+            onClick={() => {
+              modal();
+            }}
+          >
+            生成项目账单
+          </Button>);
+        }}
+      </GenerateProjectBill>
+    </Space>
+  </PureGlobal>);
 });
 
 render(<BaseExample />);

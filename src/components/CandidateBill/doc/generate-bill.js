@@ -10,6 +10,8 @@ const { default: positionListData } = _positionListData;
 const { data: userList } = userListData;
 const { data: positionList } = positionListData;
 
+const { default: paymentData } = _paymentData;
+
 const BaseExample = createWithRemoteLoader({
   modules: ['components-core:Global@PureGlobal']
 })(({ remoteModules }) => {
@@ -52,6 +54,13 @@ const BaseExample = createWithRemoteLoader({
             getMyList: {
               loader: () => {
                 return positionList;
+              }
+            }
+          },
+          bill: {
+            save: {
+              loader: () => {
+                return paymentData;
               }
             }
           }

@@ -4,6 +4,7 @@
   "description": "业务组件库",
   "scripts": {
     "init": "husky",
+    "init-package": "npm i --legacy-peer-deps",
     "start": "cross-env PORT=3010 COMPONENTS_NAME=components-biz MODULES_DEV_PUBLIC_URL=/ craco start",
     "build": "cross-env COMPONENTS_NAME=components-biz MODULES_DEV_PUBLIC_URL=components-biz craco build",
     "create": "modules-dev-create",
@@ -84,7 +85,7 @@
     "sass": "^1.75.0"
   },
   "dependencies": {
-    "@kne/format-document-builder": "^0.1.1",
+    "@kne/format-document-builder": "^0.1.2",
     "@kne/use-ref-callback": "^0.1.2",
     "dayjs": "^1.11.13"
   }

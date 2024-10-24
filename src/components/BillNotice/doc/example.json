@@ -7,12 +7,12 @@
       "code": "./base.js",
       "scope": [
         {
-          "name": "_PaymentNotice",
-          "packageName": "@components/PaymentNotice"
+          "name": "_BillNotice",
+          "packageName": "@components/BillNotice"
         },
         {
           "name": "_paymentData",
-          "packageName": "@components/PaymentNotice/doc/paymentData.json"
+          "packageName": "@components/BillNotice/doc/paymentData.json"
         }
       ]
     }

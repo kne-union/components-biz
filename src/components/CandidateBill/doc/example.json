@@ -48,6 +48,10 @@
         {
           "name": "_positionListData",
           "packageName": "@components/CandidateSelect/doc/positionListData.json"
+        },
+        {
+          "name": "_paymentData",
+          "packageName": "@components/BillNotice/doc/paymentData.json"
         }
       ]
     },

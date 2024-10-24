@@ -1,10 +1,10 @@
 
-# PaymentNotice
+# BillNotice
 
 
 ### 概述
 
-用于展示活编辑PaymentNotice
+用于展示活编辑BillNotice
 
 
 ### 示例
@@ -13,13 +13,13 @@
 
 - 这里填写示例标题
 - 这里填写示例说明
-- _PaymentNotice(@components/PaymentNotice),_paymentData(@components/PaymentNotice/doc/paymentData.json)
+- _BillNotice(@components/BillNotice),_paymentData(@components/BillNotice/doc/paymentData.json)
 
 ```jsx
-const { default: PaymentNotice } = _PaymentNotice;
+const { default: BillNotice } = _BillNotice;
 const { default: paymentData } = _paymentData;
 const BaseExample = () => {
-  return <PaymentNotice data={paymentData} />;
+  return <BillNotice data={paymentData} />;
 };
 
 render(<BaseExample />);
