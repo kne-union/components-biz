@@ -54,53 +54,47 @@ export const GenerateBillButton = ({ modalProps, ...props }) => {
 };
 
 export const EditBillButton = createWithRemoteLoader({
-  modules: ['components-core:Global@usePreset']
+  modules: ['components-core:Global@usePreset', 'components-core:Common@FetchButton']
 })(({ remoteModules, id, modalProps, onReload, ...props }) => {
-  const [usePreset] = remoteModules;
+  const [usePreset, FetchButton] = remoteModules;
   const { apis, ajax } = usePreset();
   const { message } = App.useApp();
   return (
-    <Fetch
-      {...Object.assign({}, apis.candidateBill.getDetail, {
-        data: { id }
-      })}
-      render={({ data }) => {
-        return (
-          <GenerateBill>
-            {({ modal }) => (
-              <Button
-                {...props}
-                onClick={() => {
-                  modal({
-                    title: '编辑账单',
-                    formProps: [
-                      {
-                        data,
-                        onSubmit: async data => {
-                          const { data: resData } = await ajax(
-                            Object.assign({}, apis.candidateBill.saveBill, {
-                              data: Object.assign({}, data)
-                            })
-                          );
-                          if (resData.code !== 0) {
-                            return false;
-                          }
-                          message.success('编辑账单成功');
-                          onReload && onReload();
-                        }
-                      },
-                      {
-                        onSubmit: async () => {}
-                      }
-                    ]
-                  });
-                }}
-              />
-            )}
-          </GenerateBill>
-        );
-      }}
-    />
+    <GenerateBill>
+      {({ modal }) => (
+        <FetchButton
+          {...props}
+          api={Object.assign({}, apis.candidateBill.getDetail, {
+            data: { id }
+          })}
+          modalFunc={({ data }) =>
+            modal({
+              title: '编辑账单',
+              formProps: [
+                {
+                  data,
+                  onSubmit: async data => {
+                    const { data: resData } = await ajax(
+                      Object.assign({}, apis.candidateBill.saveBill, {
+                        data: Object.assign({}, data)
+                      })
+                    );
+                    if (resData.code !== 0) {
+                      return false;
+                    }
+                    message.success('编辑账单成功');
+                    onReload && onReload();
+                  }
+                },
+                {
+                  onSubmit: async () => {}
+                }
+              ]
+            })
+          }
+        />
+      )}
+    </GenerateBill>
   );
 });
 

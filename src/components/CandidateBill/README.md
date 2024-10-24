@@ -48,74 +48,87 @@ const BaseExample = createWithRemoteLoader({
   modules: ['components-core:Global@PureGlobal']
 })(({ remoteModules }) => {
   const [PureGlobal] = remoteModules;
-  return (<PureGlobal
-    preset={{
-      enums: {
-        CONTRACT_STATE_ENUM
-      }, apis: {
-        client: {}, project: {
-          getList: {
-            loader: () => {
-              return projectListData.data;
+  return (
+    <PureGlobal
+      preset={{
+        enums: {
+          CONTRACT_STATE_ENUM
+        },
+        apis: {
+          client: {},
+          project: {
+            getList: {
+              loader: () => {
+                return projectListData.data;
+              }
+            },
+            getDetail: {
+              loader: () => {
+                return projectListData.data.projectList[0];
+              }
             }
-          }, getDetail: {
-            loader: () => {
-              return projectListData.data.projectList[0];
+          },
+          contract: {
+            getList: {
+              loader: () => {
+                return contractData;
+              }
             }
-          }
-        }, contract: {
-          getList: {
-            loader: () => {
-              return contractData;
+          },
+          ats: {
+            getTrackingList: {
+              loader: () => {
+                return userList;
+              }
             }
-          }
-        }, ats: {
-          getTrackingList: {
-            loader: () => {
-              return userList;
+          },
+          position: {
+            getMyList: {
+              loader: () => {
+                return positionList;
+              }
             }
-          }
-        }, position: {
-          getMyList: {
-            loader: () => {
-              return positionList;
-            }
-          }
-        }, bill: {
-          save: {
-            loader: () => {
-              return paymentData;
+          },
+          bill: {
+            save: {
+              loader: () => {
+                return paymentData;
+              }
             }
           }
         }
-      }
-    }}
-  >
-    <Space>
-      <GenerateBill>
-        {({ modal }) => {
-          return (<Button
-            onClick={() => {
-              modal();
-            }}
-          >
-            生成候选人账单
-          </Button>);
-        }}
-      </GenerateBill>
-      <GenerateProjectBill>
-        {({ modal }) => {
-          return (<Button
-            onClick={() => {
-              modal();
-            }}
-          >
-            生成项目账单
-          </Button>);
-        }}
-      </GenerateProjectBill>
-    </Space>
-  </PureGlobal>);
+      }}
+    >
+      <Space>
+        <GenerateBill>
+          {({ modal }) => {
+            return (
+              <Button
+                onClick={() => {
+                  modal();
+                }}
+              >
+                生成候选人账单
+              </Button>
+            );
+          }}
+        </GenerateBill>
+        <GenerateProjectBill>
+          {({ modal }) => {
+            return (
+              <Button
+                onClick={() => {
+                  modal();
+                }}
+              >
+                生成项目账单
+              </Button>
+            );
+          }}
+        </GenerateProjectBill>
+      </Space>
+    </PureGlobal>
+  );
 });
 
 render(<BaseExample />);
@@ -353,7 +366,7 @@ const BaseExample = createWithRemoteLoader({
               loader: async () => listData
             },
             getBillDetail: {
-              loader: async() => listData.data[0]
+              loader: async () => listData.data[0]
             },
             saveBill: {
               loader: () => {}
