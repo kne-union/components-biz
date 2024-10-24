@@ -12,11 +12,10 @@ const BillCenter = createWithRemoteLoader({
     'components-core:Global@usePreset',
     'components-core:StateBar',
     'components-core:Enum',
-    'components-core:InfoPage@formatView',
-    'components-core:StateTag'
+    'components-core:InfoPage@formatView'
   ]
 })(({ remoteModules }) => {
-  const [TablePage, Filter, usePreset, StateBar, Enum, formatView, StateTag] = remoteModules;
+  const [TablePage, Filter, usePreset, StateBar, Enum, formatView] = remoteModules;
   const { apis } = usePreset();
   const { SearchInput, getFilterValue, fields: filterFields } = Filter;
   const { AdvancedSelectFilterItem, UserFilterItem } = filterFields;

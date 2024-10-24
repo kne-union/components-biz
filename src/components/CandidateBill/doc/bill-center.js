@@ -74,6 +74,12 @@ const BaseExample = createWithRemoteLoader({
           candidateBill: {
             getBillList: {
               loader: async () => listData
+            },
+            getBillDetail: {
+              loader: async () => listData.data[0]
+            },
+            saveBill: {
+              loader: () => {}
             }
           }
         },
