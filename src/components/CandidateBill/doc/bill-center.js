@@ -1,6 +1,7 @@
 const { BillCenter, BILL_STATE_ENUM } = _CandidateBill;
 const { createWithRemoteLoader } = remoteLoader;
 const { listData } = mockData;
+const { range } = _lodash;
 const BaseExample = createWithRemoteLoader({
   modules: ['components-core:Global@PureGlobal', 'components-core:Layout']
 })(({ remoteModules }) => {
@@ -10,6 +11,33 @@ const BaseExample = createWithRemoteLoader({
       preset={{
         apis: {
           client: {},
+          user: {
+            getUserList: {
+              loader: ({ data }) => {
+                const params = Object.assign(
+                  {
+                    perPage: 20,
+                    currentPage: 1
+                  },
+                  data
+                );
+                return new Promise(resolve => {
+                  const start = (params.currentPage - 1) * params.perPage;
+                  resolve({
+                    totalCount: 100,
+                    pageData: range(start, start + params.perPage).map(key => {
+                      return {
+                        name: `用户${key + 1}`,
+                        id: key + 1,
+                        uid: key + 1,
+                        englishName: `User${key + 1}`
+                      };
+                    })
+                  });
+                });
+              }
+            }
+          },
           project: {
             getList: {
               loader: () => {
