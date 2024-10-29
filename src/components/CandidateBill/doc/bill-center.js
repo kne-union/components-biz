@@ -1,6 +1,6 @@
-const { BillCenter, BILL_STATE_ENUM } = _CandidateBill;
+const { BillCenterPage, BILL_STATE_ENUM } = _CandidateBill;
 const { createWithRemoteLoader } = remoteLoader;
-const { listData } = mockData;
+const { listData, detailData } = mockData;
 const { range } = _lodash;
 const { data: paymentList } = _paymentList;
 const { data: contractData } = _contractList;
@@ -43,14 +43,10 @@ const BaseExample = createWithRemoteLoader({
           },
           project: {
             getList: {
-              loader: () => {
-                return projectListData.data;
-              }
+              loader: () => {}
             },
             getDetail: {
-              loader: () => {
-                return projectListData.data.projectList[0];
-              }
+              loader: () => {}
             }
           },
           contract: {
@@ -84,7 +80,10 @@ const BaseExample = createWithRemoteLoader({
               loader: async () => listData
             },
             getBillDetail: {
-              loader: async () => listData.data[0]
+              loader: async () => detailData
+            },
+            addBill: {
+              loader: () => {}
             },
             saveBill: {
               loader: () => {}
@@ -115,11 +114,12 @@ const BaseExample = createWithRemoteLoader({
             { value: 7, description: '入职到岗' },
             { value: 8, description: '其他' }
           ]
-        }
+        },
+        permissions: ['bill:apply:edit', 'bill:apply:export_notice']
       }}
     >
       <Layout navigation={{ isFixed: false }}>
-        <BillCenter />
+        <BillCenterPage />
       </Layout>
     </PureGlobal>
   );
