@@ -1,4 +1,5 @@
 import { createWithRemoteLoader } from '@kne/remote-loader';
+import ProjectSelect from '@components/ProjectSelect';
 import ContractSelect from '@components/ContractSelect';
 import CandidateSelect from '@components/CandidateSelect';
 import { get } from 'lodash';
@@ -47,6 +48,7 @@ const BillInfoFormInner = createWithRemoteLoader({
            * 所选候选人所在职位有项目，显示项目，不可修改
            * 职位无项目，不显示项目
            */
+          <ProjectSelect name="projectId" label="项目" rule="REQ" />,
           <RadioGroup
             name="feeType"
             label="费用类别"
