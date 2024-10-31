@@ -9,10 +9,11 @@ import ApprovalProcess from '../ApprovalProcess';
 
 // 候选人账单
 const ProjectBillInfoFormInner = createWithRemoteLoader({
-  modules: ['components-core:FormInfo']
+  modules: ['components-core:FormInfo', 'components-core:FormInfo@formModule']
 })(({ remoteModules, record }) => {
-  const [FormInfo] = remoteModules;
+  const [FormInfo, formModule] = remoteModules;
   const { List } = FormInfo;
+  const { FormItem } = formModule;
   const { Input, RadioGroup, Upload, MoneyInput, DatePicker, InputNumber, AdvancedSelect } = FormInfo.fields;
 
   const onsiteFields = [
@@ -84,17 +85,12 @@ const ProjectBillInfoFormInner = createWithRemoteLoader({
                 pageData: [{ label: get(record, 'clientName'), value: get(record, 'clientId') }]
               })
             }}
-          /> /**
-       TODO
-       * 所选候选人所在职位无项目，显示合同
-       * 所选候选人所在职位都有项目，不显示合同
-       */,
-          <ContractSelect name="contractId" label="合同" rule="REQ" api={{ data: { clientId: get(record, 'clientId'), states: [5, 7] } }} /> /**
-         TODO
-         * 所选候选人所在职位有项目，显示项目，不可修改
-         * 职位无项目，不显示项目
-         */,
-          <ProjectSelect name="projectId" label="项目" rule="REQ" />,
+          />,
+          <ContractSelect name="contractId" label="合同" rule="REQ" api={{ data: { clientId: get(record, 'clientId'), states: [5, 7] } }} />,
+          // 项目账单。合同有项目，显示项目字段
+          <FormItem display={({ formData }) => get(formData, 'withoutProject') === 1}>
+            {() => <ProjectSelect name="projectId" label="项目" rule="REQ" />}
+          </FormItem>,
           <RadioGroup
             name="feeType"
             label="费用类别"

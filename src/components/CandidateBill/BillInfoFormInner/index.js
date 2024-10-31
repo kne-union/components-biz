@@ -1,5 +1,4 @@
 import { createWithRemoteLoader } from '@kne/remote-loader';
-import ProjectSelect from '@components/ProjectSelect';
 import ContractSelect from '@components/ContractSelect';
 import CandidateSelect from '@components/CandidateSelect';
 import { get } from 'lodash';
@@ -8,10 +7,9 @@ import PaymentSelect from '../../PaymentSelect';
 import ApprovalProcess from '../ApprovalProcess';
 
 const BillInfoFormInner = createWithRemoteLoader({
-  modules: ['components-core:FormInfo', 'components-core:FormInfo@formModule']
+  modules: ['components-core:FormInfo']
 })(({ remoteModules, record }) => {
-  const [FormInfo, formModule] = remoteModules;
-  const { FormItem } = formModule;
+  const [FormInfo] = remoteModules;
   const { RadioGroup, MoneyInput, TextArea, Upload, AdvancedSelect } = FormInfo.fields;
 
   return (
@@ -40,10 +38,15 @@ const BillInfoFormInner = createWithRemoteLoader({
               { value: 1, label: '合同有项目' },
               { value: 2, label: '合同没有项目' }
             ]}
-          />, // 项目账单。合同有项目，显示项目字段
-          <FormItem display={({ formData }) => get(formData, 'withoutProject') === 1}>
-            {() => <ProjectSelect name="projectId" label="项目" rule="REQ" />}
-          </FormItem>,
+          />,
+          /**
+           TODO
+           * 所选候选人所在职位无项目，显示合同
+           * 所选候选人所在职位都有项目，不显示合同
+           TODO
+           * 所选候选人所在职位有项目，显示项目，不可修改
+           * 职位无项目，不显示项目
+           */
           <RadioGroup
             name="feeType"
             label="费用类别"
